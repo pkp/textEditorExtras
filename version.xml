@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE version SYSTEM "../../../lib/pkp/dtd/pluginVersion.dtd">
+<!--
+  * plugins/generic/textEditorExtras/version.xml
+  *
+  * Copyright (c) 2017-2019 Simon Fraser University
+  * Copyright (c) 2017-2019 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Plugin version information.
+  -->
+<version>
+	<application>textEditorExtras</application>
+	<type>plugins.generic</type>
+	<release>1.0.0.0</release>
+	<date>2019-10-29</date>
+	<lazy-load>1</lazy-load>
+	<class>TextEditorExtrasPlugin</class>
+</version>
