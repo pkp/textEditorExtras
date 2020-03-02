@@ -162,7 +162,7 @@ class TextEditorExtrasPlugin extends GenericPlugin {
 			return;
 		}
 
-		$publicFileApiUrl = $request->getDispatcher()->url($request, ROUTE_API, $context->getPath(), '_uploadPublicFile/');
+		$publicFileApiUrl = $request->getDispatcher()->url($request, ROUTE_API, $context->getPath(), '_uploadPublicFile');
 
 		$additions = $allAdditions[$form->id];
 		foreach ($additions as $fieldName => $additions) {
