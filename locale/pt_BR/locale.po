@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2020-06-05 05:39+0000\n"
+"PO-Revision-Date: 2020-06-06 02:30+0000\n"
 "Last-Translator: Diego José Macêdo <diegojmacedo@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) <http://translate.pkp.sfu.ca/projects/"
 "plugins/texteditorextras/pt_BR/>\n"
@@ -51,7 +51,7 @@ msgid "plugins.generic.textEditorExtras.setting.images"
 msgstr "imagens"
 
 msgid "plugins.generic.textEditorExtras.setting.emailTemplateBody"
-msgstr "Corpo do modelo de email"
+msgstr "Corpo do modelo de e-mail"
 
 msgid "plugins.generic.textEditorExtras.description"
 msgstr ""
