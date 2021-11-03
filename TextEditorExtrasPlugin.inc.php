@@ -188,6 +188,9 @@ class TextEditorExtrasPlugin extends GenericPlugin {
 					case 'table':
 						$field->toolbar .= ' | table tabledelete | tableprops tablerowprops tablecellprops | tableinsertrowbefore tableinsertrowafter tabledeleterow | tableinsertcolbefore tableinsertcolafter tabledeletecol';
 						$field->plugins .= ',' . $addition;
+					case 'fullscreen':
+						$field->toolbar .= ' | ' . $addition;
+						$field->plugins .= ',' . $addition;							
 				}
 			}
 		}

@@ -30,6 +30,7 @@
 			<th>{translate key="plugins.generic.textEditorExtras.setting.images"}</th>
 			<th>{translate key="plugins.generic.textEditorExtras.setting.code"}</th>
 			<th>{translate key="plugins.generic.textEditorExtras.setting.tables"}</th>
+			<th>{translate key="plugins.generic.textEditorExtras.setting.fullscreen"}</th>
 		</thead>
 		<tbody>
 			<tr>
@@ -37,48 +38,63 @@
 				<td><input type="checkbox" name="additions[masthead][description][]" value="image" {if in_array('image', $additions.masthead.description)}checked="checked"{/if}></td>
 				<td><input type="checkbox" name="additions[masthead][description][]" value="code" {if in_array('code', $additions.masthead.description)}checked="checked"{/if}></td>
 				<td><input type="checkbox" name="additions[masthead][description][]" value="table" {if in_array('table', $additions.masthead.description)}checked="checked"{/if}></td>
+				<td><input type="checkbox" name="additions[masthead][description][]" value="fullscreen" {if in_array('fullscreen', $additions.masthead.description)}checked="checked"{/if}></td>
 			</tr>
+			<tr>
+				<th scope="row">{translate key="manager.setup.editorialTeam"}</th>
+				<td><input type="checkbox" name="additions[masthead][editorialTeam][]" value="image" {if in_array('image', $additions.masthead.description)}checked="checked"{/if}></td>
+				<td><input type="checkbox" name="additions[masthead][editorialTeam][]" value="code" {if in_array('code', $additions.masthead.description)}checked="checked"{/if}></td>
+				<td><input type="checkbox" name="additions[masthead][editorialTeam][]" value="table" {if in_array('table', $additions.masthead.description)}checked="checked"{/if}></td>
+				<td><input type="checkbox" name="additions[masthead][editorialTeam][]" value="fullscreen" {if in_array('fullscreen', $additions.masthead.description)}checked="checked"{/if}></td>				
+			</tr>			
 			<tr>
 				<th scope="row">{translate key="manager.setup.authorGuidelines"}</th>
 				<td><input type="checkbox" name="additions[authorGuidelines][authorGuidelines][]" value="image" {if in_array('image', $additions.authorGuidelines.authorGuidelines)}checked="checked"{/if}></td>
 				<td><input type="checkbox" name="additions[authorGuidelines][authorGuidelines][]" value="code" {if in_array('code', $additions.authorGuidelines.authorGuidelines)}checked="checked"{/if}></td>
 				<td><input type="checkbox" name="additions[authorGuidelines][authorGuidelines][]" value="table" {if in_array('table', $additions.authorGuidelines.authorGuidelines)}checked="checked"{/if}></td>
+				<td><input type="checkbox" name="additions[authorGuidelines][authorGuidelines][]" value="fullscreen" {if in_array('fullscreen', $additions.authorGuidelines.authorGuidelines)}checked="checked"{/if}></td>				
 			</tr>
 			<tr>
 				<th scope="row">{translate key="manager.setup.copyrightNotice"}</th>
 				<td><input type="checkbox" name="additions[authorGuidelines][copyrightNotice][]" value="image" {if in_array('image', $additions.authorGuidelines.copyrightNotice)}checked="checked"{/if}></td>
 				<td><input type="checkbox" name="additions[authorGuidelines][copyrightNotice][]" value="code" {if in_array('code', $additions.authorGuidelines.copyrightNotice)}checked="checked"{/if}></td>
 				<td><input type="checkbox" name="additions[authorGuidelines][copyrightNotice][]" value="table" {if in_array('table', $additions.authorGuidelines.copyrightNotice)}checked="checked"{/if}></td>
+				<td><input type="checkbox" name="additions[authorGuidelines][copyrightNotice][]" value="fullscreen" {if in_array('fullscreen', $additions.authorGuidelines.copyrightNotice)}checked="checked"{/if}></td>
 			</tr>
 			<tr>
 				<th scope="row">{translate key="manager.distribution.licenseTerms"}</th>
 				<td><input type="checkbox" name="additions[license][licenseTerms][]" value="image" {if in_array('image', $additions.license.licenseTerms)}checked="checked"{/if}></td>
 				<td><input type="checkbox" name="additions[license][licenseTerms][]" value="code" {if in_array('code', $additions.license.licenseTerms)}checked="checked"{/if}></td>
 				<td><input type="checkbox" name="additions[license][licenseTerms][]" value="table" {if in_array('table', $additions.license.licenseTerms)}checked="checked"{/if}></td>
+				<td><input type="checkbox" name="additions[license][licenseTerms][]" value="fullscreen" {if in_array('fullscreen', $additions.license.licenseTerms)}checked="checked"{/if}></td>
 			</tr>
 			<tr>
 				<th scope="row">{translate key="manager.setup.reviewGuidelines"}</th>
 				<td><input type="checkbox" name="additions[reviewerGuidance][reviewGuidelines][]" value="image" {if in_array('image', $additions.reviewerGuidance.reviewGuidelines)}checked="checked"{/if}></td>
 				<td><input type="checkbox" name="additions[reviewerGuidance][reviewGuidelines][]" value="code" {if in_array('code', $additions.reviewerGuidance.reviewGuidelines)}checked="checked"{/if}></td>
 				<td><input type="checkbox" name="additions[reviewerGuidance][reviewGuidelines][]" value="table" {if in_array('table', $additions.reviewerGuidance.reviewGuidelines)}checked="checked"{/if}></td>
+				<td><input type="checkbox" name="additions[reviewerGuidance][reviewGuidelines][]" value="fullscreen" {if in_array('fullscreen', $additions.reviewerGuidance.reviewGuidelines)}checked="checked"{/if}></td>				
 			</tr>
 			<tr>
 				<th scope="row">{translate key="manager.setup.competingInterests"}</th>
 				<td><input type="checkbox" name="additions[reviewerGuidance][competingInterests][]" value="image" {if in_array('image', $additions.reviewerGuidance.competingInterests)}checked="checked"{/if}></td>
 				<td><input type="checkbox" name="additions[reviewerGuidance][competingInterests][]" value="code" {if in_array('code', $additions.reviewerGuidance.competingInterests)}checked="checked"{/if}></td>
 				<td><input type="checkbox" name="additions[reviewerGuidance][competingInterests][]" value="table" {if in_array('table', $additions.reviewerGuidance.competingInterests)}checked="checked"{/if}></td>
+				<td><input type="checkbox" name="additions[reviewerGuidance][competingInterests][]" value="fullscreen" {if in_array('fullscreen', $additions.reviewerGuidance.competingInterests)}checked="checked"{/if}></td>				
 			</tr>
 			<tr>
 				<th scope="row">{translate key="plugins.generic.textEditorExtras.setting.emailTemplateBody"}</th>
 				<td><input type="checkbox" name="additions[editEmailTemplate][body][]" value="image" {if in_array('image', $additions.editEmailTemplate.body)}checked="checked"{/if}></td>
 				<td><input type="checkbox" name="additions[editEmailTemplate][body][]" value="code" {if in_array('code', $additions.editEmailTemplate.body)}checked="checked"{/if}></td>
 				<td><input type="checkbox" name="additions[editEmailTemplate][body][]" value="table" {if in_array('table', $additions.editEmailTemplate.body)}checked="checked"{/if}></td>
+				<td><input type="checkbox" name="additions[editEmailTemplate][body][]" value="fullscreen" {if in_array('fullscreen', $additions.editEmailTemplate.body)}checked="checked"{/if}></td>
 			</tr>
 			<tr>
 				<th scope="row">{translate key="common.abstract"}</th>
 				<td><input type="checkbox" name="additions[titleAbstract][abstract][]" value="image" {if in_array('image', $additions.titleAbstract.abstract)}checked="checked"{/if}></td>
 				<td><input type="checkbox" name="additions[titleAbstract][abstract][]" value="code" {if in_array('code', $additions.titleAbstract.abstract)}checked="checked"{/if}></td>
 				<td><input type="checkbox" name="additions[titleAbstract][abstract][]" value="table" {if in_array('table', $additions.titleAbstract.abstract)}checked="checked"{/if}></td>
+				<td><input type="checkbox" name="additions[titleAbstract][abstract][]" value="fullscreen" {if in_array('fullscreen', $additions.titleAbstract.abstract)}checked="checked"{/if}></td>
 			</tr>
 		</tbody>
 	</table>

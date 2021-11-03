@@ -29,6 +29,9 @@ msgstr "Code"
 msgid "plugins.generic.textEditorExtras.setting.tables"
 msgstr "Tables"
 
+msgid "plugins.generic.textEditorExtras.setting.fullscreen"
+msgstr "Fullscreen"
+
 msgid "plugins.generic.textEditorExtras.settings.description"
 msgstr ""
 "\n"
