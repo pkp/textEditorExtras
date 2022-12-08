@@ -44,3 +44,6 @@ msgstr ""
 "\t\t\taccording to the <a href=\"https://www.w3.org/TR/WCAG20-TECHS/H51.html\">WCAG 2.0 guidelines</a>.</p>\n"
 "\t\t<p>We encourage you to only add advanced formatting options when it is necessary and to carefully test the results\n"
 "\t\t\twherever your published material is aggregated on other services.</p>"
+
+msgid "plugins.generic.textEditorExtras.setting.announcements.descriptionShort"
+msgstr "Announcements Short Description"

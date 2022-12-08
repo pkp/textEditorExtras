@@ -80,6 +80,20 @@
 				<td><input type="checkbox" name="additions[titleAbstract][abstract][]" value="code" {if is_array($additions.titleAbstract.abstract) && in_array('code', $additions.titleAbstract.abstract)}checked="checked"{/if}></td>
 				<td><input type="checkbox" name="additions[titleAbstract][abstract][]" value="table" {if is_array($additions.titleAbstract.abstract) && in_array('table', $additions.titleAbstract.abstract)}checked="checked"{/if}></td>
 			</tr>
+			{if $currentContext->getData('enableAnnouncements')}
+				<tr>
+					<th scope="row">{translate key="announcement.announcements"}</th>
+					<td><input type="checkbox" name="additions[announcement][description][]" value="image" {if in_array('image', $additions.announcement.description)}checked="checked"{/if}></td>
+					<td><input type="checkbox" name="additions[announcement][description][]" value="code" {if in_array('code', $additions.announcement.description)}checked="checked"{/if}></td>
+					<td><input type="checkbox" name="additions[announcement][description][]" value="table" {if in_array('table', $additions.announcement.description)}checked="checked"{/if}></td>
+				</tr>
+				<tr>
+					<th scope="row">{translate key="plugins.generic.textEditorExtras.setting.announcements.descriptionShort"}</th>
+					<td><input type="checkbox" name="additions[announcement][descriptionShort][]" value="image" {if in_array('image', $additions.announcement.descriptionShort)}checked="checked"{/if}></td>
+					<td><input type="checkbox" name="additions[announcement][descriptionShort][]" value="code" {if in_array('code', $additions.announcement.descriptionShort)}checked="checked"{/if}></td>
+					<td><input type="checkbox" name="additions[announcement][descriptionShort][]" value="table" {if in_array('table', $additions.announcement.descriptionShort)}checked="checked"{/if}></td>
+				</tr>
+			{/if}
 		</tbody>
 	</table>
 
