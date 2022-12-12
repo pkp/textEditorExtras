@@ -1,7 +1,7 @@
 # Primož Svetek <primoz.svetek@gmail.com>, 2022.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2022-08-14 09:25+0000\n"
+"PO-Revision-Date: 2022-12-12 15:20+0000\n"
 "Last-Translator: Primož Svetek <primoz.svetek@gmail.com>\n"
 "Language-Team: Slovenian <http://translate.pkp.sfu.ca/projects/plugins/"
 "texteditorextras/sl_SI/>\n"
@@ -55,3 +55,6 @@ msgstr ""
 
 msgid "plugins.generic.textEditorExtras.displayName"
 msgstr "Dodatki za urejevalnik besedil"
+
+msgid "plugins.generic.textEditorExtras.setting.announcements.descriptionShort"
+msgstr "Kratek zapis obvestila"
