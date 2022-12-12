@@ -1,7 +1,7 @@
 # Pavel Pisklakov <ppv1979@mail.ru>, 2022.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2022-11-05 03:42+0000\n"
+"PO-Revision-Date: 2022-12-12 15:20+0000\n"
 "Last-Translator: Pavel Pisklakov <ppv1979@mail.ru>\n"
 "Language-Team: Russian <http://translate.pkp.sfu.ca/projects/plugins/"
 "texteditorextras/ru_RU/>\n"
@@ -66,3 +66,6 @@ msgstr ""
 
 msgid "plugins.generic.textEditorExtras.displayName"
 msgstr "Дополнения для текстового редактора"
+
+msgid "plugins.generic.textEditorExtras.setting.announcements.descriptionShort"
+msgstr "Краткое описание объявлений"
