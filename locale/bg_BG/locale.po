@@ -1,7 +1,7 @@
 # Cyril Kamburov <cc@intermedia.bg>, 2022.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2022-04-01 09:51+0000\n"
+"PO-Revision-Date: 2022-12-16 16:02+0000\n"
 "Last-Translator: Cyril Kamburov <cc@intermedia.bg>\n"
 "Language-Team: Bulgarian <http://translate.pkp.sfu.ca/projects/plugins/"
 "texteditorextras/bg_BG/>\n"
@@ -10,7 +10,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.9.1\n"
+"X-Generator: Weblate 4.13.1\n"
 
 msgid "plugins.generic.textEditorExtras.settings.description"
 msgstr ""
@@ -60,3 +60,6 @@ msgstr ""
 
 msgid "plugins.generic.textEditorExtras.displayName"
 msgstr "Добавки за текстов редактор"
+
+msgid "plugins.generic.textEditorExtras.setting.announcements.descriptionShort"
+msgstr "Кратко описание на съобщения"
