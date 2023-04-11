@@ -1,107 +1,80 @@
 <?php
 import('lib.pkp.classes.form.Form');
+class TextEditorExtrasSettingsForm extends Form {
 
-class TextEditorExtrasSettingsForm extends Form
-{
+	/** @var TextEditorExtrasPlugin  */
+	public $plugin;
+	/**
+	 * @copydoc Form::__construct()
+	 */
+	public function __construct($plugin) {
 
-    /** @var TextEditorExtrasPlugin */
-    public $plugin;
+		// Define the settings template and store a copy of the plugin object
+		parent::__construct($plugin->getTemplateResource('settings.tpl'));
+		$this->plugin = $plugin;
 
-    /**
-     * @copydoc Form::__construct()
-     */
-    public function __construct($plugin)
-    {
+		// Always add POST and CSRF validation to secure your form.
+		$this->addCheck(new FormValidatorPost($this));
+		$this->addCheck(new FormValidatorCSRF($this));
+	}
 
-        // Define the settings template and store a copy of the plugin object
-        parent::__construct($plugin->getTemplateResource('settings.tpl'));
-        $this->plugin = $plugin;
+	/**
+	 * Load settings already saved in the database
+	 *
+	 * Settings are stored by context, so that each journal or press
+	 * can have different settings.
+	 */
+	public function initData() {
+		$contextId = Application::get()->getRequest()->getContext()->getId();
+		$this->setData('additions', $this->plugin->getSetting($contextId, 'additions'));
+		parent::initData();
+	}
 
-        // Always add POST and CSRF validation to secure your form.
-        $this->addCheck(new FormValidatorPost($this));
-        $this->addCheck(new FormValidatorCSRF($this));
-    }
+	/**
+	 * Load data that was submitted with the form
+	 */
+	public function readInputData() {
+		$this->readUserVars(['additions']);
+		parent::readInputData();
+	}
 
-    /**
-     * Load settings already saved in the database
-     *
-     * Settings are stored by context, so that each journal or press
-     * can have different settings.
-     */
-    public function initData()
-    {
-        $contextId = Application::get()->getRequest()->getContext()->getId();
-        $additions =
-            array(
-                "masthead" => array("description" => array()),
-                "authorGuidelines" => array("authorGuidelines" => array(), "copyrightNotice" => array()),
-                "license" => array("licenseTerms" => array()),
-                "reviewerGuidance" => array("reviewGuidelines" => array(), "competingInterests" => array()),
-                "editEmailTemplate" => array("body" => array()),
-                "titleAbstract" => array("abstract" => array()),
-                "announcement" => array("description" => array(), "descriptionShort" => array()),
-            );
-        if($this->plugin->getSetting($contextId, 'additions')){
-            foreach ($this->plugin->getSetting($contextId, 'additions') as $key => $value) {
-                if (is_array($value)) {
-                    foreach ($value as $k => $v) {
-                        $additions[$key][$k] = $v;
-                    }
-                }
-            }
-        }
-        $this->setData('additions', $additions);
-        parent::initData();
-    }
+	/**
+	 * Fetch any additional data needed for your form.
+	 *
+	 * Data assigned to the form using $this->setData() during the
+	 * initData() or readInputData() methods will be passed to the
+	 * template.
+	 *
+	 * @return string
+	 */
+	public function fetch($request, $template = null, $display = false) {
 
-    /**
-     * Load data that was submitted with the form
-     */
-    public function readInputData()
-    {
-        $this->readUserVars(['additions']);
-        parent::readInputData();
-    }
+		// Pass the plugin name to the template so that it can be
+		// used in the URL that the form is submitted to
+		$templateMgr = TemplateManager::getManager($request);
+		$templateMgr->assign('pluginName', $this->plugin->getName());
 
-    /**
-     * Fetch any additional data needed for your form.
-     *
-     * Data assigned to the form using $this->setData() during the
-     * initData() or readInputData() methods will be passed to the
-     * template.
-     *
-     * @return string
-     */
-    public function fetch($request, $template = null, $display = false)
-    {
+		return parent::fetch($request, $template, $display);
+	}
 
-        // Pass the plugin name to the template so that it can be
-        // used in the URL that the form is submitted to
-        $templateMgr = TemplateManager::getManager($request);
-        $templateMgr->assign('pluginName', $this->plugin->getName());
+	/**
+	 * Save the settings
+	 *
+	 * @return null|mixed
+	 */
+	public function execute(...$functionArgs) {
+		$contextId = Application::get()->getRequest()->getContext()->getId();
+		$this->plugin->updateSetting($contextId, 'additions', $this->getData('additions'));
 
-        return parent::fetch($request, $template, $display);
-    }
+		// Tell the user that the save was successful.
+		import('classes.notification.NotificationManager');
+		$notificationMgr = new NotificationManager();
+		$notificationMgr->createTrivialNotification(
+			Application::get()->getRequest()->getUser()->getId(),
+			NOTIFICATION_TYPE_SUCCESS,
+			['contents' => __('common.changesSaved')]
+		);
 
-    /**
-     * Save the settings
-     *
-     * @return null|mixed
-     */
-    public function execute(...$functionArgs)
-    {
-        $contextId = Application::get()->getRequest()->getContext()->getId();
-        $this->plugin->updateSetting($contextId, 'additions', $this->getData('additions'));
-
-        // Tell the user that the save was successful.
-        import('classes.notification.NotificationManager');
-        $notificationMgr = new NotificationManager();
-        $notificationMgr->createTrivialNotification(
-            Application::get()->getRequest()->getUser()->getId(),
-            NOTIFICATION_TYPE_SUCCESS,
-            ['contents' => __('common.changesSaved')]
-        );
-
-        return parent::execute(...$functionArgs);
-    }
+		return parent::execute(...$functionArgs);
+	}
 }
