@@ -24,31 +24,30 @@ class TextEditorExtrasSettingsForm extends Form {
 	 * Settings are stored by context, so that each journal or press
 	 * can have different settings.
 	 */
-    public function initData()
-    {
-        $contextId = Application::get()->getRequest()->getContext()->getId();
-        $additions =
-            array(
-                "masthead" => array("description" => array()),
-                "authorGuidelines" => array("authorGuidelines" => array(), "copyrightNotice" => array()),
-                "license" => array("licenseTerms" => array()),
-                "reviewerGuidance" => array("reviewGuidelines" => array(), "competingInterests" => array()),
-                "editEmailTemplate" => array("body" => array()),
-                "titleAbstract" => array("abstract" => array()),
-                "announcement" => array("description" => array(), "descriptionShort" => array()),
-            );
-        if($this->plugin->getSetting($contextId, 'additions')){
-            foreach ($this->plugin->getSetting($contextId, 'additions') as $key => $value) {
-                if (is_array($value)) {
-                    foreach ($value as $k => $v) {
-                        $additions[$key][$k] = $v;
-                    }
-                }
-            }
-        }
-        $this->setData('additions', $additions);
-        parent::initData();
-    }
+	public function initData()
+	{
+		$contextId = Application::get()->getRequest()->getContext()->getId();
+		$additions = [
+			"masthead" => ["description" => [] ],
+			"authorGuidelines" => ["authorGuidelines" => [], ["copyrightNotice" => []]],
+			"license" => ["licenseTerms" => []],
+			"reviewerGuidance" => ["reviewGuidelines" => [], "competingInterests" => []],
+			"editEmailTemplate" => ["body" => []],
+			"titleAbstract" => ["abstract" => []],
+			"announcement" => ["description" => [], "descriptionShort" => []]
+		];
+		if($this->plugin->getSetting($contextId, 'additions')){
+			foreach ($this->plugin->getSetting($contextId, 'additions') as $key => $value) {
+				if (is_array($value)) {
+					foreach ($value as $k => $v) {
+						$additions[$key][$k] = $v;
+					}
+				}
+			}
+		}
+		$this->setData('additions', $additions);
+		parent::initData();
+	}
 
 	/**
 	 * Load data that was submitted with the form
