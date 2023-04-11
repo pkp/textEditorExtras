@@ -60,3 +60,6 @@ msgstr ""
 
 msgid "plugins.generic.textEditorExtras.displayName"
 msgstr "Éditeur de texte : Extras"
+
+msgid "plugins.generic.textEditorExtras.setting.announcements.descriptionShort"
+msgstr "Annonces : courte description"
