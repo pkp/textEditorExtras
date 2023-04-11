@@ -28,7 +28,7 @@ class TextEditorExtrasSettingsForm extends Form {
 	{
 		$contextId = Application::get()->getRequest()->getContext()->getId();
 		$additions = [
-			"masthead" => ["description" => [] ],
+			"masthead" => ["description" => []],
 			"authorGuidelines" => ["authorGuidelines" => [], ["copyrightNotice" => []]],
 			"license" => ["licenseTerms" => []],
 			"reviewerGuidance" => ["reviewGuidelines" => [], "competingInterests" => []],
