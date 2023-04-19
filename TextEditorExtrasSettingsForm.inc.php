@@ -37,7 +37,7 @@ class TextEditorExtrasSettingsForm extends Form {
 			"announcement" => ["description" => [], "descriptionShort" => []]
 		];
 		$settings = $this->plugin->getSetting($contextId, 'additions');
-		if($settings){
+        if (is_array($settings)) {
 			$additions = array_merge_recursive($additions, $settings);
 		}
 		$this->setData('additions', $additions);
