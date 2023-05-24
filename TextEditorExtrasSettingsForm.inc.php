@@ -29,7 +29,7 @@ class TextEditorExtrasSettingsForm extends Form {
 		$contextId = Application::get()->getRequest()->getContext()->getId();
 		$additions = [
 			"masthead" => ["description" => []],
-			"authorGuidelines" => ["authorGuidelines" => [], ["copyrightNotice" => []]],
+			"authorGuidelines" => ["authorGuidelines" => [], "copyrightNotice" => []],
 			"license" => ["licenseTerms" => []],
 			"reviewerGuidance" => ["reviewGuidelines" => [], "competingInterests" => []],
 			"editEmailTemplate" => ["body" => []],
@@ -37,7 +37,7 @@ class TextEditorExtrasSettingsForm extends Form {
 			"announcement" => ["description" => [], "descriptionShort" => []]
 		];
 		$settings = $this->plugin->getSetting($contextId, 'additions');
-        if (is_array($settings)) {
+        if (isset($settings)) {
 			$additions = array_merge_recursive($additions, $settings);
 		}
 		$this->setData('additions', $additions);
