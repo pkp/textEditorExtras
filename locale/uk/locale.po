@@ -1,7 +1,7 @@
 # Petro Bilous <petrobilous@ukr.net>, 2022, 2023.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2023-04-28 07:49+0000\n"
+"PO-Revision-Date: 2023-06-02 05:49+0000\n"
 "Last-Translator: Petro Bilous <petrobilous@ukr.net>\n"
 "Language-Team: Ukrainian <http://translate.pkp.sfu.ca/projects/plugins/"
 "texteditorextras/uk/>\n"
@@ -52,7 +52,7 @@ msgstr "Тіло шаблону електронної пошти"
 
 msgid "plugins.generic.textEditorExtras.description"
 msgstr ""
-"Додати елементи керування, які дозволяють текстовому редактору завантажувати "
+"Додати елементи керування, які дозволяють текстовому редактору вивантажувати "
 "зображення, редагувати HTML-коди й додавати таблиці."
 
 msgid "plugins.generic.textEditorExtras.displayName"
