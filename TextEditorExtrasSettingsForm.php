@@ -43,9 +43,23 @@ class TextEditorExtrasSettingsForm extends Form {
      * Settings are stored by context, so that each journal or press
      * can have different settings.
      */
-    public function initData() {
+    public function initData()
+    {
         $contextId = Application::get()->getRequest()->getContext()->getId();
-        $this->setData('additions', $this->plugin->getSetting($contextId, 'additions'));
+        $additions = [
+            "masthead" => ["description" => []],
+            "authorGuidelines" => ["authorGuidelines" => [], "copyrightNotice" => []],
+            "license" => ["licenseTerms" => []],
+            "reviewerGuidance" => ["reviewGuidelines" => [], "competingInterests" => []],
+            "editEmailTemplate" => ["body" => []],
+            "titleAbstract" => ["abstract" => []],
+            "announcement" => ["description" => [], "descriptionShort" => []]
+        ];
+        $settings = $this->plugin->getSetting($contextId, 'additions');
+        if (isset($settings)) {
+            $additions = array_merge_recursive($additions, $settings);
+        }
+        $this->setData('additions', $additions);
         parent::initData();
     }
 
