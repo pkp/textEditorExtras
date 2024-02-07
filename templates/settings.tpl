@@ -19,7 +19,7 @@
 	class="pkp_form"
 	id="textEditorExtrasSettings"
 	method="POST"
-	action="{url router=$smarty.const.ROUTE_COMPONENT op="manage" category="generic" plugin=$pluginName verb="settings" save=true}"
+	action="{url router=\PKP\core\PKPApplication::ROUTE_COMPONENT op="manage" category="generic" plugin=$pluginName verb="settings" save=true}"
 >
 	<!-- Always add the csrf token to secure your form -->
 	{csrf}
@@ -40,15 +40,57 @@
 			</tr>
 			<tr>
 				<th scope="row">{translate key="manager.setup.authorGuidelines"}</th>
-				<td><input type="checkbox" name="additions[authorGuidelines][authorGuidelines][]" value="image" {if in_array('image', $additions.authorGuidelines.authorGuidelines)}checked="checked"{/if}></td>
-				<td><input type="checkbox" name="additions[authorGuidelines][authorGuidelines][]" value="code" {if in_array('code', $additions.authorGuidelines.authorGuidelines)}checked="checked"{/if}></td>
-				<td><input type="checkbox" name="additions[authorGuidelines][authorGuidelines][]" value="table" {if in_array('table', $additions.authorGuidelines.authorGuidelines)}checked="checked"{/if}></td>
+				<td><input type="checkbox" name="additions[submissionGuidanceSettings][authorGuidelines][]" value="image" {if in_array('image', $additions.submissionGuidanceSettings.authorGuidelines)}checked="checked"{/if}></td>
+				<td><input type="checkbox" name="additions[submissionGuidanceSettings][authorGuidelines][]" value="code" {if in_array('code', $additions.submissionGuidanceSettings.authorGuidelines)}checked="checked"{/if}></td>
+				<td><input type="checkbox" name="additions[submissionGuidanceSettings][authorGuidelines][]" value="table" {if in_array('table', $additions.submissionGuidanceSettings.authorGuidelines)}checked="checked"{/if}></td>
+			</tr>
+			<tr>
+				<th scope="row">{translate key="submission.wizard.beforeStart"}</th>
+				<td><input type="checkbox" name="additions[submissionGuidanceSettings][beginSubmissionHelp][]" value="image" {if in_array('image', $additions.submissionGuidanceSettings.beginSubmissionHelp)}checked="checked"{/if}></td>
+				<td><input type="checkbox" name="additions[submissionGuidanceSettings][beginSubmissionHelp][]" value="code" {if in_array('code', $additions.submissionGuidanceSettings.beginSubmissionHelp)}checked="checked"{/if}></td>
+				<td><input type="checkbox" name="additions[submissionGuidanceSettings][beginSubmissionHelp][]" value="table" {if in_array('table', $additions.submissionGuidanceSettings.beginSubmissionHelp)}checked="checked"{/if}></td>
+			</tr>
+			<tr>
+				<th scope="row">{translate key="manager.setup.submissionPreparationChecklist"}</th>
+				<td><input type="checkbox" name="additions[submissionGuidanceSettings][submissionChecklist][]" value="image" {if in_array('image', $additions.submissionGuidanceSettings.submissionChecklist)}checked="checked"{/if}></td>
+				<td><input type="checkbox" name="additions[submissionGuidanceSettings][submissionChecklist][]" value="code" {if in_array('code', $additions.submissionGuidanceSettings.submissionChecklist)}checked="checked"{/if}></td>
+				<td><input type="checkbox" name="additions[submissionGuidanceSettings][submissionChecklist][]" value="table" {if in_array('table', $additions.submissionGuidanceSettings.submissionChecklist)}checked="checked"{/if}></td>
+			</tr>
+			<tr>
+				<th scope="row">{translate key="submission.upload.uploadFiles"}</th>
+				<td><input type="checkbox" name="additions[submissionGuidanceSettings][uploadFilesHelp][]" value="image" {if in_array('image', $additions.submissionGuidanceSettings.uploadFilesHelp)}checked="checked"{/if}></td>
+				<td><input type="checkbox" name="additions[submissionGuidanceSettings][uploadFilesHelp][]" value="code" {if in_array('code', $additions.submissionGuidanceSettings.uploadFilesHelp)}checked="checked"{/if}></td>
+				<td><input type="checkbox" name="additions[submissionGuidanceSettings][uploadFilesHelp][]" value="table" {if in_array('table', $additions.submissionGuidanceSettings.uploadFilesHelp)}checked="checked"{/if}></td>
+			</tr>
+			<tr>
+				<th scope="row">{translate key="publication.contributors"}</th>
+				<td><input type="checkbox" name="additions[submissionGuidanceSettings][contributorsHelp][]" value="image" {if in_array('image', $additions.submissionGuidanceSettings.contributorsHelp)}checked="checked"{/if}></td>
+				<td><input type="checkbox" name="additions[submissionGuidanceSettings][contributorsHelp][]" value="code" {if in_array('code', $additions.submissionGuidanceSettings.contributorsHelp)}checked="checked"{/if}></td>
+				<td><input type="checkbox" name="additions[submissionGuidanceSettings][contributorsHelp][]" value="table" {if in_array('table', $additions.submissionGuidanceSettings.contributorsHelp)}checked="checked"{/if}></td>
+			</tr>
+			<tr>
+				<th scope="row">{translate key="common.details"}</th>
+				<td><input type="checkbox" name="additions[submissionGuidanceSettings][detailsHelp][]" value="image" {if in_array('image', $additions.submissionGuidanceSettings.detailsHelp)}checked="checked"{/if}></td>
+				<td><input type="checkbox" name="additions[submissionGuidanceSettings][detailsHelp][]" value="code" {if in_array('code', $additions.submissionGuidanceSettings.detailsHelp)}checked="checked"{/if}></td>
+				<td><input type="checkbox" name="additions[submissionGuidanceSettings][detailsHelp][]" value="table" {if in_array('table', $additions.submissionGuidanceSettings.detailsHelp)}checked="checked"{/if}></td>
+			</tr>
+			<tr>
+				<th scope="row">{translate key="submission.forTheEditors"}</th>
+				<td><input type="checkbox" name="additions[submissionGuidanceSettings][forTheEditorsHelp][]" value="image" {if in_array('image', $additions.submissionGuidanceSettings.forTheEditorsHelp)}checked="checked"{/if}></td>
+				<td><input type="checkbox" name="additions[submissionGuidanceSettings][forTheEditorsHelp][]" value="code" {if in_array('code', $additions.submissionGuidanceSettings.forTheEditorsHelp)}checked="checked"{/if}></td>
+				<td><input type="checkbox" name="additions[submissionGuidanceSettings][forTheEditorsHelp][]" value="table" {if in_array('table', $additions.submissionGuidanceSettings.forTheEditorsHelp)}checked="checked"{/if}></td>
+			</tr>
+			<tr>
+				<th scope="row">{translate key="submission.reviewAndSubmit"}</th>
+				<td><input type="checkbox" name="additions[submissionGuidanceSettings][reviewHelp][]" value="image" {if in_array('image', $additions.submissionGuidanceSettings.reviewHelp)}checked="checked"{/if}></td>
+				<td><input type="checkbox" name="additions[submissionGuidanceSettings][reviewHelp][]" value="code" {if in_array('code', $additions.submissionGuidanceSettings.reviewHelp)}checked="checked"{/if}></td>
+				<td><input type="checkbox" name="additions[submissionGuidanceSettings][reviewHelp][]" value="table" {if in_array('table', $additions.submissionGuidanceSettings.reviewHelp)}checked="checked"{/if}></td>
 			</tr>
 			<tr>
 				<th scope="row">{translate key="manager.setup.copyrightNotice"}</th>
-				<td><input type="checkbox" name="additions[authorGuidelines][copyrightNotice][]" value="image" {if in_array('image', $additions.authorGuidelines.copyrightNotice)}checked="checked"{/if}></td>
-				<td><input type="checkbox" name="additions[authorGuidelines][copyrightNotice][]" value="code" {if in_array('code', $additions.authorGuidelines.copyrightNotice)}checked="checked"{/if}></td>
-				<td><input type="checkbox" name="additions[authorGuidelines][copyrightNotice][]" value="table" {if in_array('table', $additions.authorGuidelines.copyrightNotice)}checked="checked"{/if}></td>
+				<td><input type="checkbox" name="additions[submissionGuidanceSettings][copyrightNotice][]" value="image" {if in_array('image', $additions.submissionGuidanceSettings.copyrightNotice)}checked="checked"{/if}></td>
+				<td><input type="checkbox" name="additions[submissionGuidanceSettings][copyrightNotice][]" value="code" {if in_array('code', $additions.submissionGuidanceSettings.copyrightNotice)}checked="checked"{/if}></td>
+				<td><input type="checkbox" name="additions[submissionGuidanceSettings][copyrightNotice][]" value="table" {if in_array('table', $additions.submissionGuidanceSettings.copyrightNotice)}checked="checked"{/if}></td>
 			</tr>
 			<tr>
 				<th scope="row">{translate key="manager.distribution.licenseTerms"}</th>
