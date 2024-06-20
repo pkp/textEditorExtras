@@ -1,7 +1,8 @@
+# Pia Piontkowitz <pia.piontkowitz@rub.de>, 2023.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2020-11-14 15:51+0000\n"
-"Last-Translator: Martin Brändle <martin.braendle@uzh.ch>\n"
+"PO-Revision-Date: 2023-04-26 14:49+0000\n"
+"Last-Translator: Pia Piontkowitz <pia.piontkowitz@rub.de>\n"
 "Language-Team: German <http://translate.pkp.sfu.ca/projects/plugins/"
 "texteditorextras/de/>\n"
 "Language: de\n"
@@ -9,7 +10,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.9.1\n"
+"X-Generator: Weblate 4.13.1\n"
 
 msgid "plugins.generic.textEditorExtras.settings.description"
 msgstr ""
@@ -60,3 +61,6 @@ msgstr ""
 
 msgid "plugins.generic.textEditorExtras.displayName"
 msgstr "Text Editor Extras"
+
+msgid "plugins.generic.textEditorExtras.setting.announcements.descriptionShort"
+msgstr "Ankündigungen Kurzbeschreibung"
