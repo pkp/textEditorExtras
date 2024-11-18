@@ -1,8 +1,10 @@
 # Aysa Ekanger <aysa.ekanger@uit.no>, 2024.
+# Johanna Skaug <johanna.skaug@ub.uio.no>, 2024.
+# Tormod Strømme <tormod.stromme@uib.no>, 2024.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2024-06-12 10:58+0000\n"
-"Last-Translator: Aysa Ekanger <aysa.ekanger@uit.no>\n"
+"PO-Revision-Date: 2024-06-26 11:39+0000\n"
+"Last-Translator: Tormod Strømme <tormod.stromme@uib.no>\n"
 "Language-Team: Norwegian Bokmål <http://translate.pkp.sfu.ca/projects/"
 "plugins/texteditorextras/nb_NO/>\n"
 "Language: nb\n"
@@ -20,3 +22,17 @@ msgstr "Kode"
 
 msgid "plugins.generic.textEditorExtras.setting.images"
 msgstr "Bilder"
+
+msgid "plugins.generic.textEditorExtras.setting.emailTemplateBody"
+msgstr "E-post-malens brødtekst"
+
+msgid "plugins.generic.textEditorExtras.displayName"
+msgstr "Text Editor Extras"
+
+msgid "plugins.generic.textEditorExtras.setting.announcements.descriptionShort"
+msgstr "Oppslag Kort beskrivelse"
+
+msgid "plugins.generic.textEditorExtras.description"
+msgstr ""
+"Legg til flere kontroller til det innebygde tekstverktøyet for å laste opp "
+"bilder, manipulere HTML-koden og lage tabeller."
