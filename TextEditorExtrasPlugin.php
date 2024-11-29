@@ -12,6 +12,7 @@
 
 namespace APP\plugins\generic\textEditorExtras;
 
+use APP\notification\NotificationManager;
 use PKP\plugins\GenericPlugin;
 use PKP\plugins\Hook;
 use PKP\linkAction\request\AjaxModal;
@@ -56,55 +57,21 @@ class TextEditorExtrasPlugin extends GenericPlugin {
         return __('plugins.generic.textEditorExtras.description');
     }
 
-    /**
-     * Add a settings action to the plugin's entry in the
-     * plugins list.
-     *
-     * @param Request $request
-     * @param array $actionArgs
-     * @return array
-     */
-    public function getActions($request, $actionArgs) {
-
-        // Get the existing actions
-        $actions = parent::getActions($request, $actionArgs);
-
-        // Only add the settings action when the plugin is enabled
-        if (!$this->getEnabled()) {
-            return $actions;
-        }
-
-        // Create a LinkAction that will make a request to the
-        // plugin's `manage` method with the `settings` verb.
-        $router = $request->getRouter();
-        $linkAction = new LinkAction(
-            'settings',
-            new AjaxModal(
-                $router->url(
-                    $request,
-                    null,
-                    null,
-                    'manage',
-                    null,
-                    [
-                        'verb' => 'settings',
-                        'plugin' => $this->getName(),
-                        'category' => 'generic'
-                    ]
-                ),
-                $this->getDisplayName()
-            ),
-            __('manager.plugins.settings'),
-            null
-        );
-
-        // Add the LinkAction to the existing actions.
-        // Make it the first action to be consistent with
-        // other plugins.
-        array_unshift($actions, $linkAction);
-
-        return $actions;
+  /**
+   * @copydoc Plugin::getActions()
+   */
+  public function getActions($request, $verb): array
+  {
+    $actions = parent::getActions($request, $verb);
+    if (!$this->getEnabled()) {
+      return $actions;
     }
+
+    $router = $request->getRouter();
+    $url = $router->url($request, null, null, 'manage', null, ['verb' => 'settings', 'plugin' => $this->getName(), 'category' => 'generic']);
+    array_unshift($actions, new LinkAction('settings', new AjaxModal($url, $this->getDisplayName()), __('manager.plugins.settings')));
+    return $actions;
+  }
 
     /**
      * Show and save the settings form when the settings action
@@ -115,26 +82,26 @@ class TextEditorExtrasPlugin extends GenericPlugin {
      * @return JSONMessage
      */
     public function manage($args, $request) {
-        switch ($request->getUserVar('verb')) {
-            case 'settings':
-                // Load the custom form
-                $form = new TextEditorExtrasSettingsForm($this);
-
-                // Fetch the form the first time it loads, before
-                // the user has tried to save it
-                if (!$request->getUserVar('save')) {
-                    $form->initData();
-                    return new JSONMessage(true, $form->fetch($request));
-                }
-
-                // Validate and save the form data
-                $form->readInputData();
-                if ($form->validate()) {
-                    $form->execute();
-                    return new JSONMessage(true);
-                }
-        }
+      if ($request->getUserVar('verb') !== 'settings') {
         return parent::manage($args, $request);
+      }
+
+      $form = new TextEditorExtrasSettingsForm($this);
+      if (!$request->getUserVar('save')) {
+        $form->initData();
+        return new JSONMessage(true, $form->fetch($request));
+      }
+
+      $form->readInputData();
+      if (!$form->validate()) {
+        return new JSONMessage(true, $form->fetch($request));
+      }
+
+      $form->execute();
+      $notificationManager = new NotificationManager();
+      $notificationManager->createTrivialNotification($request->getUser()->getId());
+
+      return new JSONMessage(true);
     }
 
     /**
