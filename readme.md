@@ -5,11 +5,11 @@ An [OJS](https://github.com/pkp/ojs) plugin to add controls to the rich text edi
 ![Screenshot of plugin settings](screenshot.png)
 
 ## Compatibility
-* OJS 3.2.x
+* OJS 3.5.x
 
 ## Installation
 
-You can install this plugin from the plugin gallery in OJS after upgrading to v3.2.
+You can install this plugin from the plugin gallery in OJS after upgrading to v3.5.x
 
 ## Usage
 

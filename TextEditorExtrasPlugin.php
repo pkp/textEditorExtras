@@ -2,8 +2,8 @@
 /**
  * @file plugins/generic/textEditorExtras/TextEditorExtrasPlugin.php
  *
- * Copyright (c) 2017-2023 Simon Fraser University
- * Copyright (c) 2017-2023 John Willinsky
+ * Copyright (c) 2017-2025 Simon Fraser University
+ * Copyright (c) 2017-2025 John Willinsky
  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @class TextEditorExtrasPlugin
@@ -138,7 +138,7 @@ class TextEditorExtrasPlugin extends GenericPlugin {
         $additions = $allAdditions[$form->id];
         foreach ($additions as $fieldName => $additions) {
             $field = $form->getField($fieldName);
-            if (!$field || !is_a($field, 'PKP\components\forms\FieldRichTextArea')) {
+            if (!$field || !is_a($field, 'PKP\components\forms\FieldRichTextarea')) {
                 continue;
             }
             foreach ($additions as $addition) {
@@ -149,16 +149,22 @@ class TextEditorExtrasPlugin extends GenericPlugin {
                 switch ($addition) {
                     case 'code':
                         $field->toolbar .= ' | ' . $addition;
-                        $field->plugins .= ',' . $addition;
+                        if (!in_array($addition, $field->plugins)) {
+                            $field->plugins[] = $addition;
+                        }
                         break;
                     case 'image':
                         $field->toolbar .= ' | ' . $addition;
-                        $field->plugins .= ',' . $addition;
+                        if (!in_array($addition, $field->plugins)) {
+                            $field->plugins[] = $addition;
+                        }
                         $field->uploadUrl = $publicFileApiUrl;
                         break;
                     case 'table':
                         $field->toolbar .= ' | table tabledelete | tableprops tablerowprops tablecellprops | tableinsertrowbefore tableinsertrowafter tabledeleterow | tableinsertcolbefore tableinsertcolafter tabledeletecol';
-                        $field->plugins .= ',' . $addition;
+                        if (!in_array($addition, $field->plugins)) {
+                            $field->plugins[] = $addition;
+                        }
                 }
             }
         }
