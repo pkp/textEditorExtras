@@ -2,8 +2,8 @@
 /**
  * @file plugins/generic/textEditorExtras/TextEditorExtrasSettingsForm.php
  *
- * Copyright (c) 2017-2023 Simon Fraser University
- * Copyright (c) 2017-2023 John Willinsky
+ * Copyright (c) 2017-2025 Simon Fraser University
+ * Copyright (c) 2017-2025 John Willinsky
  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @class TextEditorExtrasPlugin
@@ -18,7 +18,7 @@ use PKP\form\validation\FormValidatorCSRF;
 use APP\notification\NotificationManager;
 use APP\core\Application;
 use APP\template\TemplateManager;
-use PKPNotification;
+use PKP\notification\Notification;
 
 class TextEditorExtrasSettingsForm extends Form {
 
@@ -115,7 +115,7 @@ class TextEditorExtrasSettingsForm extends Form {
         $notificationMgr = new NotificationManager();
         $notificationMgr->createTrivialNotification(
             Application::get()->getRequest()->getUser()->getId(),
-            PKPNotification::NOTIFICATION_TYPE_SUCCESS,
+            Notification::NOTIFICATION_TYPE_SUCCESS,
             ['contents' => __('common.changesSaved')]
         );
 
