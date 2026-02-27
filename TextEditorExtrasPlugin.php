@@ -26,11 +26,13 @@ class TextEditorExtrasPlugin extends GenericPlugin {
      * @copydoc GenericPlugin::register()
      */
     public function register($category, $path, $mainContextId = NULL) {
-        $success = parent::register($category, $path);
-        if ($success && $this->getEnabled()) {
-            Hook::add('Form::config::before', [$this, 'modifyForms']);
+        if (!parent::register($category, $path, $mainContextId)) {
+            return false;
         }
-        return $success;
+        if ($this->getEnabled($mainContextId)) {
+            Hook::add('Form::config::before', $this->modifyForms(...));
+        }
+        return true;
     }
 
     /**
