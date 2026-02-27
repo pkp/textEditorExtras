@@ -25,7 +25,7 @@ class TextEditorExtrasPlugin extends GenericPlugin {
     /**
      * @copydoc GenericPlugin::register()
      */
-    public function register($category, $path, $mainContextId = NULL) {
+    public function register($category, $path, $mainContextId = null) {
         if (!parent::register($category, $path, $mainContextId)) {
             return false;
         }
@@ -59,21 +59,21 @@ class TextEditorExtrasPlugin extends GenericPlugin {
         return __('plugins.generic.textEditorExtras.description');
     }
 
-  /**
-   * @copydoc Plugin::getActions()
-   */
-  public function getActions($request, $verb): array
-  {
-    $actions = parent::getActions($request, $verb);
-    if (!$this->getEnabled()) {
-      return $actions;
-    }
+    /**
+     * @copydoc Plugin::getActions()
+     */
+    public function getActions($request, $verb): array
+    {
+        $actions = parent::getActions($request, $verb);
+        if (!$this->getEnabled()) {
+            return $actions;
+        }
 
-    $router = $request->getRouter();
-    $url = $router->url($request, null, null, 'manage', null, ['verb' => 'settings', 'plugin' => $this->getName(), 'category' => 'generic']);
-    array_unshift($actions, new LinkAction('settings', new AjaxModal($url, $this->getDisplayName()), __('manager.plugins.settings')));
-    return $actions;
-  }
+        $router = $request->getRouter();
+        $url = $router->url($request, null, null, 'manage', null, ['verb' => 'settings', 'plugin' => $this->getName(), 'category' => 'generic']);
+        array_unshift($actions, new LinkAction('settings', new AjaxModal($url, $this->getDisplayName()), __('manager.plugins.settings')));
+        return $actions;
+    }
 
     /**
      * Show and save the settings form when the settings action
@@ -84,26 +84,24 @@ class TextEditorExtrasPlugin extends GenericPlugin {
      * @return JSONMessage
      */
     public function manage($args, $request) {
-      if ($request->getUserVar('verb') !== 'settings') {
-        return parent::manage($args, $request);
-      }
+        if ($request->getUserVar('verb') !== 'settings') {
+            return parent::manage($args, $request);
+        }
 
-      $form = new TextEditorExtrasSettingsForm($this);
-      if (!$request->getUserVar('save')) {
-        $form->initData();
-        return new JSONMessage(true, $form->fetch($request));
-      }
+        $form = new TextEditorExtrasSettingsForm($this);
+        if (!$request->getUserVar('save')) {
+            $form->initData();
+            return new JSONMessage(true, $form->fetch($request));
+        }
 
-      $form->readInputData();
-      if (!$form->validate()) {
-        return new JSONMessage(true, $form->fetch($request));
-      }
+        $form->readInputData();
+        if (!$form->validate()) {
+            return new JSONMessage(true, $form->fetch($request));
+        }
 
-      $form->execute();
-      $notificationManager = new NotificationManager();
-      $notificationManager->createTrivialNotification($request->getUser()->getId());
+        $form->execute();
 
-      return new JSONMessage(true);
+        return new JSONMessage(true);
     }
 
     /**
@@ -140,7 +138,7 @@ class TextEditorExtrasPlugin extends GenericPlugin {
         $additions = $allAdditions[$form->id];
         foreach ($additions as $fieldName => $additions) {
             $field = $form->getField($fieldName);
-            if (!$field || !is_a($field, 'PKP\components\forms\FieldRichTextarea')) {
+            if (!$field instanceof \PKP\components\forms\FieldRichTextarea) {
                 continue;
             }
             foreach ($additions as $addition) {
@@ -167,6 +165,7 @@ class TextEditorExtrasPlugin extends GenericPlugin {
                         if (!in_array($addition, $field->plugins)) {
                             $field->plugins[] = $addition;
                         }
+                        break;
                 }
             }
         }

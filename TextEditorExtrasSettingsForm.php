@@ -21,17 +21,10 @@ use APP\template\TemplateManager;
 use PKP\notification\Notification;
 
 class TextEditorExtrasSettingsForm extends Form {
-
-    /** @var TextEditorExtrasPlugin  */
-    public $plugin;
-    /**
-     * @copydoc Form::__construct()
-     */
-    public function __construct($plugin) {
+    public function __construct(public TextEditorExtrasPlugin $plugin) {
 
         // Define the settings template and store a copy of the plugin object
         parent::__construct($plugin->getTemplateResource('settings.tpl'));
-        $this->plugin = $plugin;
 
         // Always add POST and CSRF validation to secure your form.
         $this->addCheck(new FormValidatorPost($this));
@@ -49,27 +42,27 @@ class TextEditorExtrasSettingsForm extends Form {
 
       // Customized to get settings form to work.
       $additions = [
-        "masthead" => ["description" => []],
-        "submissionGuidanceSettings" => [
-          "authorGuidelines" => [],
-          "beginSubmissionHelp" => [],
-          "submissionChecklist" => [],
-          "uploadFilesHelp" => [],
-          "contributorsHelp" => [],
-          "detailsHelp" => [],
-          "forTheEditorsHelp" => [],
-          "reviewHelp" => [],
-          "copyrightNotice" => []
-        ],
-        "license" => ["licenseTerms" => []],
-        "reviewerGuidance" => ["reviewGuidelines" => [], "competingInterests" => []],
-        "editEmailTemplate" => ["body" => []],
-        "titleAbstract" => ["abstract" => []],
-        "announcement" => ["description" => [], "descriptionShort" => []]
+          'masthead' => ['description' => []],
+          'submissionGuidanceSettings' => [
+              'authorGuidelines' => [],
+              'beginSubmissionHelp' => [],
+              'submissionChecklist' => [],
+              'uploadFilesHelp' => [],
+              'contributorsHelp' => [],
+              'detailsHelp' => [],
+              'forTheEditorsHelp' => [],
+              'reviewHelp' => [],
+              'copyrightNotice' => []
+          ],
+          'license' => ['licenseTerms' => []],
+          'reviewerGuidance' => ['reviewGuidelines' => [], 'competingInterests' => []],
+          'editEmailTemplate' => ['body' => []],
+          'titleAbstract' => ['abstract' => []],
+          'announcement' => ['description' => [], 'descriptionShort' => []]
       ];
       $settings = $this->plugin->getSetting($contextId, 'additions');
       if (isset($settings)) {
-        $additions = array_merge_recursive($additions, $settings);
+          $additions = array_merge_recursive($additions, $settings);
       }
       $this->setData('additions', $additions);
       parent::initData();
@@ -104,8 +97,6 @@ class TextEditorExtrasSettingsForm extends Form {
 
     /**
      * Save the settings
-     *
-     * @return null|mixed
      */
     public function execute(...$functionArgs) {
         $contextId = Application::get()->getRequest()->getContext()->getId();
