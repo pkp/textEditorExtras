@@ -15,7 +15,7 @@ msgid "plugins.generic.textEditorExtras.displayName"
 msgstr "Text Editor Extras"
 
 msgid "plugins.generic.textEditorExtras.description"
-msgstr "Add controls to the rich text editor to upload images, manipulate the HTML code, and add tables."
+msgstr "Add controls to the rich text editor to upload images, manipulate the HTML code, add tables, headings, lists and other formatting."
 
 msgid "plugins.generic.textEditorExtras.setting.emailTemplateBody"
 msgstr "Email Template Body"
@@ -47,3 +47,30 @@ msgstr ""
 
 msgid "plugins.generic.textEditorExtras.setting.announcements.descriptionShort"
 msgstr "Announcements Short Description"
+
+msgid "plugins.generic.textEditorExtras.setting.headings"
+msgstr "Headings"
+
+msgid "plugins.generic.textEditorExtras.setting.lists"
+msgstr "Lists"
+
+msgid "plugins.generic.textEditorExtras.setting.blockquote"
+msgstr "Quote and Divider"
+
+msgid "plugins.generic.textEditorExtras.setting.removeFormat"
+msgstr "Clear Formatting"
+
+msgid "plugins.generic.textEditorExtras.setting.charmap"
+msgstr "Special Characters"
+
+msgid "plugins.generic.textEditorExtras.headings.paragraph"
+msgstr "Paragraph"
+
+msgid "plugins.generic.textEditorExtras.headings.heading"
+msgstr "Heading {$level}"
+
+msgid "plugins.generic.textEditorExtras.settings.missingTags"
+msgstr "Some of the enabled controls produce HTML tags that are not permitted by the <code>allowed_html</code> setting in <code>config.inc.php</code>: {$tags}. This content will look correct in the editor but will be removed when it is displayed. Ask your system administrator to add these tags to <code>allowed_html</code> or disable the controls that use them."
+
+msgid "plugins.generic.textEditorExtras.setting.navigationMenuItemContent"
+msgstr "Custom Page Content (Navigation Menus)"

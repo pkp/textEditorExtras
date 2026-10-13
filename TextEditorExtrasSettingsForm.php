@@ -18,6 +18,7 @@ use PKP\form\validation\FormValidatorCSRF;
 use APP\notification\NotificationManager;
 use APP\core\Application;
 use APP\template\TemplateManager;
+use PKP\context\Context;
 use PKP\notification\Notification;
 
 class TextEditorExtrasSettingsForm extends Form {
@@ -38,34 +39,10 @@ class TextEditorExtrasSettingsForm extends Form {
      * can have different settings.
      */
     public function initData() {
-      $contextId = Application::get()->getRequest()->getContext()->getId();
-
-      // Customized to get settings form to work.
-      $additions = [
-          'masthead' => ['description' => []],
-          'submissionGuidanceSettings' => [
-              'authorGuidelines' => [],
-              'beginSubmissionHelp' => [],
-              'submissionChecklist' => [],
-              'uploadFilesHelp' => [],
-              'contributorsHelp' => [],
-              'detailsHelp' => [],
-              'forTheEditorsHelp' => [],
-              'reviewHelp' => [],
-              'copyrightNotice' => []
-          ],
-          'license' => ['licenseTerms' => []],
-          'reviewerGuidance' => ['reviewGuidelines' => [], 'competingInterests' => []],
-          'editEmailTemplate' => ['body' => []],
-          'titleAbstract' => ['abstract' => []],
-          'announcement' => ['description' => [], 'descriptionShort' => []]
-      ];
-      $settings = $this->plugin->getSetting($contextId, 'additions');
-      if (isset($settings)) {
-          $additions = array_merge_recursive($additions, $settings);
-      }
-      $this->setData('additions', $additions);
-      parent::initData();
+        $contextId = Application::get()->getRequest()->getContext()->getId();
+        $settings = $this->plugin->getSetting($contextId, 'additions');
+        $this->setData('additions', is_array($settings) ? $settings : []);
+        parent::initData();
     }
 
     /**
@@ -86,21 +63,81 @@ class TextEditorExtrasSettingsForm extends Form {
      * @return string
      */
     public function fetch($request, $template = null, $display = false) {
+        $context = $request->getContext();
+        $additions = (array) $this->getData('additions');
 
-        // Pass the plugin name to the template so that it can be
-        // used in the URL that the form is submitted to
+        // Build the table rows here so that the template only loops over
+        // the fields and controls defined in the plugin class.
+        $rows = [];
+        foreach ($this->plugin->getFields($context) as $formId => $formFields) {
+            foreach ($formFields as $fieldName => $labelKey) {
+                $rows[] = [
+                    'formId' => $formId,
+                    'fieldName' => $fieldName,
+                    'label' => __($labelKey),
+                    'selected' => (array) ($additions[$formId][$fieldName] ?? []),
+                ];
+            }
+        }
+
+        $controls = [];
+        foreach ($this->plugin->getControls() as $controlName => $control) {
+            $controls[$controlName] = __($control['label']);
+        }
+
         $templateMgr = TemplateManager::getManager($request);
-        $templateMgr->assign('pluginName', $this->plugin->getName());
+        $templateMgr->assign([
+            'pluginName' => $this->plugin->getName(),
+            'controls' => $controls,
+            'rows' => $rows,
+            'missingTags' => implode(', ', $this->plugin->getMissingHtmlTags($additions)),
+        ]);
 
         return parent::fetch($request, $template, $display);
+    }
+
+    /**
+     * Keep only known forms, fields and controls from the submitted data.
+     *
+     * Settings for fields that are not shown in the form (e.g. announcement
+     * fields while announcements are disabled) are preserved.
+     */
+    protected function sanitizeAdditions(array $input, array $saved, ?Context $context): array
+    {
+        $controlNames = array_keys($this->plugin->getControls());
+        $fields = $this->plugin->getFields($context);
+
+        $additions = [];
+        foreach ($saved as $formId => $formFields) {
+            foreach ((array) $formFields as $fieldName => $selected) {
+                if (!isset($fields[$formId][$fieldName])) {
+                    $additions[$formId][$fieldName] = $selected;
+                }
+            }
+        }
+
+        foreach ($fields as $formId => $formFields) {
+            foreach ($formFields as $fieldName => $labelKey) {
+                $selected = (array) ($input[$formId][$fieldName] ?? []);
+                // Keep the order of getControls() regardless of the posted order
+                $additions[$formId][$fieldName] = array_values(array_intersect($controlNames, $selected));
+            }
+        }
+
+        return $additions;
     }
 
     /**
      * Save the settings
      */
     public function execute(...$functionArgs) {
-        $contextId = Application::get()->getRequest()->getContext()->getId();
-        $this->plugin->updateSetting($contextId, 'additions', $this->getData('additions'));
+        $context = Application::get()->getRequest()->getContext();
+        $additions = $this->sanitizeAdditions(
+            (array) $this->getData('additions'),
+            (array) $this->plugin->getSetting($context->getId(), 'additions'),
+            $context
+        );
+        $this->plugin->updateSetting($context->getId(), 'additions', $additions);
 
         // Tell the user that the save was successful.
         $notificationMgr = new NotificationManager();

@@ -55,10 +55,37 @@ msgstr "Tělo šablony emailu"
 msgid "plugins.generic.textEditorExtras.description"
 msgstr ""
 "Přidává do textového editoru možnosti nahrávání obrázků, zpracování HTML "
-"kódu a přidávání tabulek."
+"kódu, přidávání tabulek, nadpisů, seznamů a dalšího formátování."
 
 msgid "plugins.generic.textEditorExtras.displayName"
 msgstr "Doplňky textového editoru"
 
 msgid "plugins.generic.textEditorExtras.setting.announcements.descriptionShort"
 msgstr "Krátký popis oznámení"
+
+msgid "plugins.generic.textEditorExtras.setting.headings"
+msgstr "Nadpisy"
+
+msgid "plugins.generic.textEditorExtras.setting.lists"
+msgstr "Seznamy"
+
+msgid "plugins.generic.textEditorExtras.setting.blockquote"
+msgstr "Citace a oddělovač"
+
+msgid "plugins.generic.textEditorExtras.setting.removeFormat"
+msgstr "Vymazat formátování"
+
+msgid "plugins.generic.textEditorExtras.setting.charmap"
+msgstr "Speciální znaky"
+
+msgid "plugins.generic.textEditorExtras.headings.paragraph"
+msgstr "Odstavec"
+
+msgid "plugins.generic.textEditorExtras.headings.heading"
+msgstr "Nadpis {$level}"
+
+msgid "plugins.generic.textEditorExtras.settings.missingTags"
+msgstr "Některé zapnuté ovládací prvky vytvářejí HTML tagy, které nepovoluje nastavení <code>allowed_html</code> v souboru <code>config.inc.php</code>: {$tags}. V editoru se obsah zobrazí správně, ale při zobrazení na webu bude odstraněn. Požádejte správce systému o doplnění těchto tagů do <code>allowed_html</code>, nebo příslušné ovládací prvky vypněte."
+
+msgid "plugins.generic.textEditorExtras.setting.navigationMenuItemContent"
+msgstr "Obsah vlastní stránky (navigační menu)"
